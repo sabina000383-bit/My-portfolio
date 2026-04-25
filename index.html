@@ -140,6 +140,42 @@ nav{
 }
 .nav-cta:hover{background:#5a3faa;transform:translateY(-1px)}
 
+/* Mobile hamburger */
+.hamburger{
+  display:none;
+  flex-direction:column;gap:5px;
+  cursor:pointer;padding:.4rem;
+  background:none;border:none;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--text);border-radius:2px;
+  transition:all .3s;
+}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Mobile nav drawer */
+.mobile-nav{
+  display:none;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(248,247,244,0.98);
+  backdrop-filter:blur(20px);
+  z-index:190;
+  flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+.mobile-nav.open{opacity:1;pointer-events:all}
+.mobile-nav a{
+  font-size:1.4rem;font-weight:600;color:var(--text);
+  text-decoration:none;letter-spacing:.02em;
+  transition:color .3s;
+}
+.mobile-nav a:hover{color:var(--accent)}
+.mobile-nav .nav-cta{font-size:1rem;padding:.8rem 2.5rem}
+
 /* HERO */
 #hero{
   min-height:100vh;
@@ -459,27 +495,131 @@ footer{
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
+/* =============================================
+   TABLET — 768px to 900px
+   ============================================= */
 @media(max-width:900px){
   nav{padding:1rem 1.5rem}
-  .nav-links,.nav-cta{display:none}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-nav{display:flex}
+
   section.main{padding:4rem 1.5rem}
   #hero{padding:7rem 1.5rem 4rem}
-  .hero-inner{grid-template-columns:1fr;gap:3rem}
+  .hero-inner{grid-template-columns:1fr;gap:3rem;text-align:center}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-img-wrap{display:flex;justify-content:center}
   .hero-img-frame{width:260px;height:310px}
-  .services-grid{grid-template-columns:1fr}
+
+  .services-grid{grid-template-columns:1fr 1fr}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .process-grid{grid-template-columns:1fr 1fr}
-  .testi-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr 1fr}
   .stats-inner{grid-template-columns:1fr 1fr}
+
   footer{flex-direction:column;gap:1.2rem;padding:2rem 1.5rem;text-align:center}
   #cta{padding:5rem 1.5rem}
-  .contact-cards{grid-template-columns:1fr}
+  .contact-cards{grid-template-columns:1fr 1fr;max-width:100%}
+  .stats-bar{padding:2rem 1.5rem}
+}
+
+/* =============================================
+   MOBILE — up to 600px
+   ============================================= */
+@media(max-width:600px){
+  nav{padding:.9rem 1.1rem}
+
+  /* Hero */
+  #hero{padding:6.5rem 1.1rem 3rem}
+  .hero-inner{gap:2.5rem}
+  .hero-badge{font-size:1rem;margin-bottom:1rem}
+  .live-dot{width:18px;height:18px}
+  h1{font-size:clamp(2rem,8vw,2.8rem)}
+  .hero-sub{font-size:.88rem}
+  .hero-btns{flex-direction:column;gap:.75rem}
+  .hero-btns .btn{text-align:center;width:100%}
+  .hero-img-frame{width:220px;height:265px}
+  /* Hide floating badges on very small screens to avoid overflow */
+  .float-badge.top-right{right:-10px;font-size:.62rem;padding:.4rem .7rem}
+  .float-badge.bot-left{left:-10px;font-size:.62rem;padding:.4rem .7rem}
+
+  /* Stats */
+  .stats-bar{padding:1.5rem 1.1rem}
+  .stats-inner{grid-template-columns:1fr 1fr;gap:0}
+  .stat-n{font-size:2rem}
+  .stat-item::after{display:none}
+  .stat-item{padding:.9rem .5rem;border-bottom:1px solid rgba(109,79,194,.08)}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(109,79,194,.08)}
+
+  /* Sections */
+  section.main{padding:3rem 1.1rem}
+  .sec-title{font-size:clamp(1.5rem,6vw,2rem)}
+
+  /* Services */
+  .services-grid{grid-template-columns:1fr;gap:1rem}
+  .svc{padding:1.5rem 1.3rem}
+
+  /* About */
+  .about-card{padding:1rem 1.1rem}
+  .ac-icon{width:36px;height:36px;font-size:.95rem}
+  .ac-sub{font-size:.7rem}
+  .about-text p{font-size:.85rem}
+
+  /* Process */
+  .process-grid{grid-template-columns:1fr;gap:1rem}
+  .proc{padding:1.5rem 1.3rem}
+
+  /* Testimonials */
+  .testi-grid{grid-template-columns:1fr;gap:1rem}
+  .tcard{padding:1.4rem}
+
+  /* CTA */
+  #cta{padding:4rem 1.1rem}
+  #cta h2{font-size:clamp(1.6rem,7vw,2.2rem)}
+  #cta p{font-size:.88rem}
+  .contact-cards{grid-template-columns:1fr;max-width:320px}
+  .contact-card{padding:1rem 1.1rem}
+
+  /* Footer */
+  footer{padding:1.8rem 1.1rem;gap:1rem}
+  .footer-logo img{width:70px}
+  .footer-links{gap:1rem;flex-wrap:wrap;justify-content:center}
+  .footer-links a{font-size:1rem}
+  .footer-copy{font-size:.68rem}
+
+  /* Mobile cursor off — use native */
+  body{cursor:auto}
+  .cursor,.cursor-ring{display:none}
+}
+
+/* =============================================
+   SMALL MOBILE — up to 380px
+   ============================================= */
+@media(max-width:380px){
+  h1{font-size:1.8rem}
+  .hero-img-frame{width:190px;height:230px}
+  .float-badge{display:none}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat-n{font-size:1.7rem}
 }
 </style>
 </head>
 <body>
 <div id="cursor" class="cursor"></div>
 <div id="cursorRing" class="cursor-ring"></div>
+
+<!-- Mobile nav drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#process" onclick="closeMobileNav()">Process</a>
+  <a href="#testimonials" onclick="closeMobileNav()">Reviews</a>
+  <a href="#cta" onclick="closeMobileNav()">Contact</a>
+  <a href="https://wa.me/8801768994472" class="nav-cta">Hire Me</a>
+</div>
+
 <nav>
   <div class="logo"><img src="RuaaDeen.png" alt="Refat"></div>
   <ul class="nav-links">
@@ -490,6 +630,9 @@ footer{
     <li><a href="#cta">Contact</a></li>
   </ul>
   <a href="https://wa.me/8801768994472" class="nav-cta">Hire Me</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -507,7 +650,6 @@ footer{
       </div>
     </div>
     <div class="hero-img-wrap">
-      
       <div class="hero-img-frame">
         <img src="Refat.png" alt="Refat">
       </div>
@@ -604,7 +746,7 @@ footer{
         <p class="sec-tag">About Me</p>
         <h2 class="sec-title">Who I Am &<br>Why Choose Me</h2>
         <div class="about-text">
-          <p>I’m MD Refat Sheikh, a Full-Stack Digital Specialist. I help businesses grow by combining marketing, web, graphics, and video production, all in one seamless workflow.</p>
+          <p>I'm MD Refat Sheikh, a Full-Stack Digital Specialist. I help businesses grow by combining marketing, web, graphics, and video production, all in one seamless workflow.</p>
           <p>My expertise in SEO, GEO, AEO, AIO, and AI-driven growth strategies ensures your business stays visible, competitive, and ahead in both search engines and AI tools.</p>
           <p>In every project, I don't just deliver work, I become your business growth partner. Your success is my mission.</p>
         </div>
@@ -639,7 +781,7 @@ footer{
     <div class="reveal">
       <p class="sec-tag">How I Work</p>
       <h2 class="sec-title">My Work Process</h2>
-      <p class="sec-sub">Clear strategy. Honest collaboration. Real outcomes.<br>That’s the standard I bring to every project.</p>
+      <p class="sec-sub">Clear strategy. Honest collaboration. Real outcomes.<br>That's the standard I bring to every project.</p>
     </div>
     <div class="process-grid">
       <div class="proc"><div class="proc-num">01</div><div class="proc-name">Discovery</div><p class="proc-desc">I dive deep into your business, goals, and target audience to build the right foundation for success.</p></div>
@@ -681,7 +823,7 @@ footer{
 <!-- CTA -->
 <section id="cta">
   <h2>Growth starts<br>with the right conversation.</h2>
-  <p>Let’s explore how we can create momentum together. If it makes sense, we build something impactful.</p>
+  <p>Let's explore how we can create momentum together. If it makes sense, we build something impactful.</p>
   <div class="contact-cards">
     <a href="https://wa.me/8801768994472" class="contact-card">
       <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
@@ -708,6 +850,7 @@ footer{
 </footer>
 
 <script>
+// Intersection observer for animations
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if(e.isIntersecting){
@@ -717,74 +860,79 @@ const obs = new IntersectionObserver(entries => {
   });
 }, {threshold:0.12});
 document.querySelectorAll('.reveal,.proc,.tcard').forEach(el=>obs.observe(el));
-	// Animetion
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+
+function closeMobileNav(){
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+
+// Custom cursor (desktop only)
 const cursor     = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursorRing');
 
-    // Move custom cursor
-    document.addEventListener('mousemove', e => {
-      cursor.style.left     = e.clientX + 'px';
-      cursor.style.top      = e.clientY + 'px';
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top  = e.clientY + 'px';
-    });
+document.addEventListener('mousemove', e => {
+  cursor.style.left     = e.clientX + 'px';
+  cursor.style.top      = e.clientY + 'px';
+  cursorRing.style.left = e.clientX + 'px';
+  cursorRing.style.top  = e.clientY + 'px';
+});
 
-    // Click effect
-    document.addEventListener('click', e => {
-      createRipples(e.clientX, e.clientY);
-      createSparks(e.clientX, e.clientY);
-    });
+document.addEventListener('click', e => {
+  createRipples(e.clientX, e.clientY);
+  createSparks(e.clientX, e.clientY);
+});
 
-    function createRipples(x, y) {
-      ['r1','r2','r3','r4','r5'].forEach(cls => {
-        const el = document.createElement('div');
-        el.classList.add('ripple', cls);
-        el.style.left = x + 'px';
-        el.style.top  = y + 'px';
-        document.body.appendChild(el);
-        el.addEventListener('animationend', () => el.remove());
-      });
-    }
+function createRipples(x, y) {
+  ['r1','r2','r3','r4','r5'].forEach(cls => {
+    const el = document.createElement('div');
+    el.classList.add('ripple', cls);
+    el.style.left = x + 'px';
+    el.style.top  = y + 'px';
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  });
+}
 
-    function createSparks(x, y) {
-      const count = 12;
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement('div');
-        el.classList.add('spark');
-        el.style.left = x + 'px';
-        el.style.top  = y + 'px';
+function createSparks(x, y) {
+  const count = 12;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.classList.add('spark');
+    el.style.left = x + 'px';
+    el.style.top  = y + 'px';
+    const angle = (360 / count) * i + Math.random() * 20;
+    const dist  = 40 + Math.random() * 60;
+    const rad   = angle * Math.PI / 180;
+    el.style.setProperty('--dx', (Math.cos(rad) * dist) + 'px');
+    el.style.setProperty('--dy', (Math.sin(rad) * dist) + 'px');
+    const size = 3 + Math.random() * 5;
+    el.style.width  = size + 'px';
+    el.style.height = size + 'px';
+    el.style.background = `hsl(${270 + Math.random() * 40}, 80%, 70%)`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
 
-        const angle = (360 / count) * i + Math.random() * 20;
-        const dist  = 40 + Math.random() * 60;
-        const rad   = angle * Math.PI / 180;
-        const dx    = Math.cos(rad) * dist;
-        const dy    = Math.sin(rad) * dist;
-
-        el.style.setProperty('--dx', dx + 'px');
-        el.style.setProperty('--dy', dy + 'px');
-
-        // vary size & color slightly
-        const size = 3 + Math.random() * 5;
-        el.style.width  = size + 'px';
-        el.style.height = size + 'px';
-        const hue = 270 + Math.random() * 40;
-        el.style.background = `hsl(${hue}, 80%, 70%)`;
-
-        document.body.appendChild(el);
-        el.addEventListener('animationend', () => el.remove());
-      }
-    }
-
-    // Cursor scale on click
-    document.addEventListener('mousedown', () => {
-      cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
-      cursorRing.style.transform = 'translate(-50%, -50%) scale(0.7)';
-    });
-    document.addEventListener('mouseup', () => {
-      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-      cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
-
+document.addEventListener('mousedown', () => {
+  cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+  cursorRing.style.transform = 'translate(-50%, -50%) scale(0.7)';
+});
+document.addEventListener('mouseup', () => {
+  cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+  cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+});
 </script>
 </body>
 </html>
