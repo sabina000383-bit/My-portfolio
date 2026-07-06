@@ -120,9 +120,22 @@ nav{
   animation:fadeDown .7s both;
 }
 
-.logo img {
-  width: 30px;
-  height: auto;
+.logo {
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.logo .initials {
+  font-size: 0.9rem;
+  font-weight: 800;
+  opacity: 0.8;
 }
 
 .nav-links{display:flex;gap:2rem;list-style:none}
@@ -472,9 +485,25 @@ footer{
   background:var(--text);padding:2.2rem 5rem;
   display:flex;justify-content:space-between;align-items:center;
 }
-.footer-logo img {
-  width: 100px;
-  height: auto;
+.footer-logo {
+  font-family: 'Lora', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-logo .initials {
+  font-size: 1.1rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #b668ff, #0ea887);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 .footer-copy{font-size:.75rem;color:rgba(255,255,255,.45)}
 .footer-links{display:flex;gap:1.5rem}
@@ -584,7 +613,7 @@ footer{
 
   /* Footer */
   footer{padding:1.8rem 1.1rem;gap:1rem}
-  .footer-logo img{width:70px}
+  .footer-logo{font-size:1.1rem}
   .footer-links{gap:1rem;flex-wrap:wrap;justify-content:center}
   .footer-links a{font-size:1rem}
   .footer-copy{font-size:.68rem}
@@ -621,7 +650,7 @@ footer{
 </div>
 
 <nav>
-  <div class="logo"><img src="RuaaDeen.png" alt="Refat"></div>
+  <div class="logo"><span class="initials">MR</span> Refat Sheikh</div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
@@ -818,7 +847,7 @@ footer{
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo"><img src="RuaaDeen Logo 1.png" alt="Refat"></div>
+  <div class="footer-logo"><span class="initials">MR</span>Refat Sheikh</div>
   <div class="footer-copy">© 2026 MD Refat Sheikh. All rights reserved.</div>
   <div class="footer-links">
 	<a href="https://www.facebook.com/refatsheikh2005"><i class="fa-brands fa-facebook fa-2x"></i></a>
